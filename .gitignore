@@ -1,0 +1,47 @@
+# Projeto
+PROMPT.md
+
+# Dependências
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Projeto nativo (gerado pelo expo prebuild)
+android/
+ios/
+
+# Build EAS
+.eas/
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testes
+coverage/
+
+# Detox
+e2e/artifacts/
