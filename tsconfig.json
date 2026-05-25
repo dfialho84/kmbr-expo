@@ -17,12 +17,13 @@
     "paths": {
       "@/*": ["src/*"],
       "@domain/*": ["src/domain/*"],
+      "@application/*": ["src/application/*"],
       "@adapters/*": ["src/adapters/*"],
       "@infrastructure/*": ["src/infrastructure/*"],
       "@ui/*": ["src/ui/*"],
       "@mocks/*": ["src/__mocks__/*"]
     }
   },
-  "include": ["src", "e2e"],
+  "include": ["src", "e2e", "global.d.ts"],
   "exclude": ["node_modules"]
 }

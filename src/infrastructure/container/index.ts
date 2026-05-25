@@ -1,21 +1,23 @@
 // Container de Injeção de Dependência
 // Centraliza a instanciação e configuração de todos os adapters e casos de uso
+// Este é o único ponto onde dependências concretas são montadas.
 
-interface Container {
-  // Adicionar dependências conforme features forem criadas
-}
+import { SmokeSQLiteRepository } from '@adapters/repositories/SmokeSQLiteRepository';
+import { getDatabase } from '@infrastructure/database';
+import { SmokeUseCase } from '@domain/use-cases/SmokeUseCase';
 
-class DIContainer implements Container {
-  private static instance: DIContainer;
+let smokeUseCase: SmokeUseCase | null = null;
 
-  private constructor() {}
-
-  public static getInstance(): DIContainer {
-    if (!DIContainer.instance) {
-      DIContainer.instance = new DIContainer();
-    }
-    return DIContainer.instance;
+export async function getSmokeUseCase(): Promise<SmokeUseCase> {
+  if (!smokeUseCase) {
+    const db = await getDatabase();
+    const repository = new SmokeSQLiteRepository(db);
+    smokeUseCase = new SmokeUseCase(repository);
   }
+  return smokeUseCase;
 }
 
-export const container = DIContainer.getInstance();
+/** Reset para uso em testes */
+export function resetContainer(): void {
+  smokeUseCase = null;
+}

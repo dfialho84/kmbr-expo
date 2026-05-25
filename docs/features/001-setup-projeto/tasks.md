@@ -6,7 +6,7 @@
 
 ### T-01: Declarar todas as dependências no package.json
 
-- [ ] Adicionar ao `package.json` todas as dependências requeridas pelo projeto: Expo SDK, expo-router, TypeScript, NativeWind, Zustand, Zod, expo-sqlite, expo-secure-store, AsyncStorage, Jest, React Native Testing Library, Detox, @cucumber/cucumber, ESLint e Prettier. Garantir que versões sejam compatíveis entre si e com o Expo SDK escolhido.
+- [x] Adicionar ao `package.json` todas as dependências requeridas pelo projeto: Expo SDK, expo-router, TypeScript, NativeWind, Zustand, Zod, expo-sqlite, expo-secure-store, AsyncStorage, Jest, React Native Testing Library, Detox, @cucumber/cucumber, ESLint e Prettier. Garantir que versões sejam compatíveis entre si e com o Expo SDK escolhido.
 
 **Rastreabilidade:** REQ-1 · NFR-1
 **Depende de:** —
@@ -20,7 +20,7 @@
 
 ### T-02: Criar estrutura base do Expo Router em ui/app/
 
-- [ ] Criar o diretório `src/ui/app/` com ao menos dois arquivos de rota usando file-based routing do Expo Router: `index.tsx` como tela inicial e uma segunda rota (ex: `about.tsx`). Cada tela deve renderizar um componente React Native simples sem lógica de negócio.
+- [x] Criar o diretório `src/ui/app/` com ao menos dois arquivos de rota usando file-based routing do Expo Router: `index.tsx` como tela inicial e uma segunda rota (ex: `about.tsx`). Cada tela deve renderizar um componente React Native simples sem lógica de negócio.
 
 **Rastreabilidade:** REQ-2 · REQ-3 · NFR-2
 **Depende de:** T-01
@@ -28,7 +28,7 @@
 
 ### T-03: Configurar app.json / app.config.ts
 
-- [ ] Criar ou ajustar `app.json` (ou `app.config.ts`) com os metadados obrigatórios do Expo: `name`, `slug`, `version`, `ios.bundleIdentifier`, `android.package` e plugins necessários (NativeWind, expo-router). Configurar `scheme` para deep linking compatível com Expo Router.
+- [x] Criar ou ajustar `app.json` (ou `app.config.ts`) com os metadados obrigatórios do Expo: `name`, `slug`, `version`, `ios.bundleIdentifier`, `android.package` e plugins necessários (NativeWind, expo-router). Configurar `scheme` para deep linking compatível com Expo Router.
 
 **Rastreabilidade:** REQ-2 · REQ-6
 **Depende de:** T-01
@@ -42,7 +42,7 @@
 
 ### T-04: Implementar layout raiz do Expo Router
 
-- [ ] Criar `src/ui/app/_layout.tsx` com o componente `Stack` ou `Tabs` do Expo Router que registra as rotas disponíveis. Garantir que ao menos duas rotas sejam reconhecidas e navegáveis. Não incluir lógica de negócio no layout.
+- [x] Criar `src/ui/app/_layout.tsx` com o componente `Stack` ou `Tabs` do Expo Router que registra as rotas disponíveis. Garantir que ao menos duas rotas sejam reconhecidas e navegáveis. Não incluir lógica de negócio no layout.
 
 **Rastreabilidade:** REQ-3
 **Depende de:** T-02
@@ -56,7 +56,7 @@
 
 ### T-05: Configurar Jest e React Native Testing Library
 
-- [ ] Criar `jest.config.js` (ou `jest.config.ts`) na raiz do projeto configurando preset compatível com Expo, transformers necessários para TypeScript e JSX, e `moduleNameMapper` para aliases de `src/`. Adicionar script `"test": "jest"` no `package.json`.
+- [x] Criar `jest.config.js` (ou `jest.config.ts`) na raiz do projeto configurando preset compatível com Expo, transformers necessários para TypeScript e JSX, e `moduleNameMapper` para aliases de `src/`. Adicionar script `"test": "jest"` no `package.json`.
 
 **Rastreabilidade:** REQ-4 · NFR-5
 **Depende de:** T-01
@@ -64,7 +64,7 @@
 
 ### T-06: Criar diretório de mocks em src/__mocks__/
 
-- [ ] Criar o diretório `src/__mocks__/` e adicionar o mock de `ISmokePersistenceRepository` como arquivo TypeScript. O mock deve implementar a interface do port com `save()` e `findById()` retornando valores configuráveis via jest.fn().
+- [x] Criar o diretório `src/__mocks__/` e adicionar o mock de `ISmokePersistenceRepository` como arquivo TypeScript. O mock deve implementar a interface do port com `save()` e `findById()` retornando valores configuráveis via jest.fn().
 
 **Rastreabilidade:** REQ-4 · REQ-5
 **Depende de:** T-05 · T-14
@@ -78,7 +78,7 @@
 
 ### T-07: Criar entidade SmokeItem em domain/entities/
 
-- [ ] Criar `src/domain/entities/SmokeItem.ts` definindo o tipo `SmokeItem` com campos `id: number`, `label: string`, `value: string` e `createdAt: string`. A entidade não deve importar nada de fora de `domain/` exceto Zod (se necessário para validação interna).
+- [x] Criar `src/domain/entities/SmokeItem.ts` definindo o tipo `SmokeItem` com campos `id: number`, `label: string`, `value: string` e `createdAt: string`. A entidade não deve importar nada de fora de `domain/` exceto Zod (se necessário para validação interna).
 
 **Rastreabilidade:** REQ-5
 **Depende de:** —
@@ -86,7 +86,7 @@
 
 ### T-08: Declarar interface ISmokePersistenceRepository em domain/repositories/
 
-- [ ] Criar `src/domain/repositories/ISmokePersistenceRepository.ts` com a interface `ISmokePersistenceRepository` contendo os métodos `save(dto: SmokeItemDto): Promise<SmokeItem>` e `findById(id: number): Promise<SmokeItem | null>`. Nenhuma implementação neste arquivo — apenas a interface (port).
+- [x] Criar `src/domain/repositories/ISmokePersistenceRepository.ts` com a interface `ISmokePersistenceRepository` contendo os métodos `save(dto: SmokeItemDto): Promise<SmokeItem>` e `findById(id: number): Promise<SmokeItem | null>`. Nenhuma implementação neste arquivo — apenas a interface (port).
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-07
@@ -94,7 +94,7 @@
 
 ### T-09: Criar SmokeItemDto em application/dtos/
 
-- [ ] Criar `src/application/dtos/SmokeItemDto.ts` com o tipo `SmokeItemDto` contendo `label: string` e `value: string`. Criar também `SmokeResultDto.ts` com `id: number`, `label: string`, `value: string` e `createdAt: string`. Ambos os arquivos devem estar em `src/application/dtos/`.
+- [x] Criar `src/application/dtos/SmokeItemDto.ts` com o tipo `SmokeItemDto` contendo `label: string` e `value: string`. Criar também `SmokeResultDto.ts` com `id: number`, `label: string`, `value: string` e `createdAt: string`. Ambos os arquivos devem estar em `src/application/dtos/`.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** —
@@ -102,7 +102,7 @@
 
 ### T-10: Criar schema Zod para SmokeItemDto
 
-- [ ] Criar o schema Zod para validar `SmokeItemDto` em `src/application/dtos/SmokeItemDto.ts` (ou arquivo dedicado `smoke-item-dto.schema.ts`). O schema deve aplicar: `label` com `min(1)` e `max(100)`; `value` com `min(1)`. Erros de validação devem ser mapeáveis para `DomainError` com `code: "SMOKE_VALIDATION_FAILED"`.
+- [x] Criar o schema Zod para validar `SmokeItemDto` em `src/application/dtos/SmokeItemDto.ts` (ou arquivo dedicado `smoke-item-dto.schema.ts`). O schema deve aplicar: `label` com `min(1)` e `max(100)`; `value` com `min(1)`. Erros de validação devem ser mapeáveis para `DomainError` com `code: "SMOKE_VALIDATION_FAILED"`.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-09
@@ -110,7 +110,7 @@
 
 ### T-11: Definir estrutura de DomainError
 
-- [ ] Criar `src/domain/entities/DomainError.ts` (ou `src/domain/errors/DomainError.ts`) com a classe ou tipo `DomainError` contendo os campos obrigatórios `code: string`, `message: string` e `context: Record<string, unknown>`. Deve estender `Error` para ser compatível com `throw`.
+- [x] Criar `src/domain/entities/DomainError.ts` (ou `src/domain/errors/DomainError.ts`) com a classe ou tipo `DomainError` contendo os campos obrigatórios `code: string`, `message: string` e `context: Record<string, unknown>`. Deve estender `Error` para ser compatível com `throw`.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** —
@@ -118,7 +118,7 @@
 
 ### T-12: Implementar SmokeUseCase em domain/use-cases/
 
-- [ ] Criar `src/domain/use-cases/SmokeUseCase.ts` com a classe `SmokeUseCase` que recebe `ISmokePersistenceRepository` por injeção de dependência no construtor. Implementar o método `execute(dto: SmokeItemDto): Promise<SmokeResultDto>` que: valida o DTO via schema Zod lançando `DomainError SMOKE_VALIDATION_FAILED` se inválido; chama `repository.save()` capturando erros e relançando como `DomainError SMOKE_SAVE_FAILED`; chama `repository.findById()` capturando erros e relançando como `DomainError SMOKE_READ_FAILED`; e mapeia o resultado para `SmokeResultDto`.
+- [x] Criar `src/domain/use-cases/SmokeUseCase.ts` com a classe `SmokeUseCase` que recebe `ISmokePersistenceRepository` por injeção de dependência no construtor. Implementar o método `execute(dto: SmokeItemDto): Promise<SmokeResultDto>` que: valida o DTO via schema Zod lançando `DomainError SMOKE_VALIDATION_FAILED` se inválido; chama `repository.save()` capturando erros e relançando como `DomainError SMOKE_SAVE_FAILED`; chama `repository.findById()` capturando erros e relançando como `DomainError SMOKE_READ_FAILED`; e mapeia o resultado para `SmokeResultDto`.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-07 · T-08 · T-09 · T-10 · T-11
@@ -126,7 +126,7 @@
 
 ### T-13: Criar migration da tabela SmokeItem em infrastructure/database/
 
-- [ ] Criar `src/infrastructure/database/migrations/001-create-smoke-item.ts` (ou equivalente) com o SQL de criação da tabela `SmokeItem` com colunas `id INTEGER PRIMARY KEY AUTOINCREMENT`, `label TEXT NOT NULL`, `value TEXT NOT NULL`, `createdAt TEXT NOT NULL`. O script deve ser idempotente (`CREATE TABLE IF NOT EXISTS`).
+- [x] Criar `src/infrastructure/database/migrations/001-create-smoke-item.ts` (ou equivalente) com o SQL de criação da tabela `SmokeItem` com colunas `id INTEGER PRIMARY KEY AUTOINCREMENT`, `label TEXT NOT NULL`, `value TEXT NOT NULL`, `createdAt TEXT NOT NULL`. O script deve ser idempotente (`CREATE TABLE IF NOT EXISTS`).
 
 **Rastreabilidade:** REQ-5
 **Depende de:** —
@@ -134,7 +134,7 @@
 
 ### T-14: Configurar inicialização do expo-sqlite em infrastructure/database/
 
-- [ ] Criar `src/infrastructure/database/database.ts` responsável por abrir a conexão expo-sqlite e executar as migrations em sequência. Expor a instância de banco tipada para uso pelos repositórios. O módulo não deve ser importado diretamente por componentes ou stores.
+- [x] Criar `src/infrastructure/database/database.ts` responsável por abrir a conexão expo-sqlite e executar as migrations em sequência. Expor a instância de banco tipada para uso pelos repositórios. O módulo não deve ser importado diretamente por componentes ou stores.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-13
@@ -142,7 +142,7 @@
 
 ### T-15: Implementar SmokeSQLiteRepository em adapters/repositories/
 
-- [ ] Criar `src/adapters/repositories/SmokeSQLiteRepository.ts` implementando `ISmokePersistenceRepository`. O método `save()` deve inserir o item no SQLite, ler o `lastInsertRowId` e retornar o `SmokeItem` completo incluindo `createdAt` em ISO 8601. O método `findById()` deve fazer query por `id` e retornar `SmokeItem` ou `null`.
+- [x] Criar `src/adapters/repositories/SmokeSQLiteRepository.ts` implementando `ISmokePersistenceRepository`. O método `save()` deve inserir o item no SQLite, ler o `lastInsertRowId` e retornar o `SmokeItem` completo incluindo `createdAt` em ISO 8601. O método `findById()` deve fazer query por `id` e retornar `SmokeItem` ou `null`.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-08 · T-14
@@ -150,7 +150,7 @@
 
 ### T-16: Criar wrappers de AsyncStorage e SecureStore em adapters/storage/
 
-- [ ] Criar `src/adapters/storage/AsyncStorageService.ts` e `src/adapters/storage/SecureStorageService.ts` encapsulando AsyncStorage e expo-secure-store respectivamente em interfaces tipadas. Cada wrapper deve expor métodos `get(key)`, `set(key, value)` e `delete(key)` sem vazar a API nativa para fora do adaptador.
+- [x] Criar `src/adapters/storage/AsyncStorageService.ts` e `src/adapters/storage/SecureStorageService.ts` encapsulando AsyncStorage e expo-secure-store respectivamente em interfaces tipadas. Cada wrapper deve expor métodos `get(key)`, `set(key, value)` e `delete(key)` sem vazar a API nativa para fora do adaptador.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-01
@@ -158,7 +158,7 @@
 
 ### T-17: Configurar container de injeção de dependência em infrastructure/container/
 
-- [ ] Criar `src/infrastructure/container/index.ts` (ou `container.ts`) como factory manual que instancia `SmokeSQLiteRepository` com a conexão de `infrastructure/database/` e injeta-o no `SmokeUseCase`. Deve ser o único ponto onde dependências concretas são montadas. Exportar função ou objeto de acesso ao `SmokeUseCase` resolvido.
+- [x] Criar `src/infrastructure/container/index.ts` (ou `container.ts`) como factory manual que instancia `SmokeSQLiteRepository` com a conexão de `infrastructure/database/` e injeta-o no `SmokeUseCase`. Deve ser o único ponto onde dependências concretas são montadas. Exportar função ou objeto de acesso ao `SmokeUseCase` resolvido.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-12 · T-15
@@ -166,7 +166,7 @@
 
 ### T-18: Criar Zustand store de exemplo em ui/stores/
 
-- [ ] Criar `src/ui/stores/useSmokeStore.ts` com um Zustand store simples que mantém o estado do resultado do smoke test (`status: "idle" | "loading" | "success" | "error"` e `result: SmokeResultDto | null`). Mutações somente via ações do store, sem acesso direto a adaptadores.
+- [x] Criar `src/ui/stores/useSmokeStore.ts` com um Zustand store simples que mantém o estado do resultado do smoke test (`status: "idle" | "loading" | "success" | "error"` e `result: SmokeResultDto | null`). Mutações somente via ações do store, sem acesso direto a adaptadores.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-09
@@ -174,7 +174,7 @@
 
 ### T-19: Criar custom hook useSmokeTest em ui/hooks/
 
-- [ ] Criar `src/ui/hooks/useSmokeTest.ts` que usa o container para resolver `SmokeUseCase` e expõe uma função `runSmoke(dto: SmokeItemDto)` ao componente. O hook deve atualizar o `useSmokeStore` com o resultado ou erro. É o único ponto de acesso a `infrastructure/container/` a partir da UI.
+- [x] Criar `src/ui/hooks/useSmokeTest.ts` que usa o container para resolver `SmokeUseCase` e expõe uma função `runSmoke(dto: SmokeItemDto)` ao componente. O hook deve atualizar o `useSmokeStore` com o resultado ou erro. É o único ponto de acesso a `infrastructure/container/` a partir da UI.
 
 **Rastreabilidade:** REQ-5
 **Depende de:** T-17 · T-18
@@ -182,7 +182,7 @@
 
 ### T-20: Configurar TypeScript strict mode em tsconfig.json
 
-- [ ] Criar ou ajustar `tsconfig.json` na raiz do projeto com `"strict": true` habilitado e paths configurados para os aliases de `src/` (ex: `@domain/*`, `@adapters/*`, `@ui/*`). Garantir que todos os arquivos de `src/` sejam cobertos pela verificação de tipos.
+- [x] Criar ou ajustar `tsconfig.json` na raiz do projeto com `"strict": true` habilitado e paths configurados para os aliases de `src/` (ex: `@domain/*`, `@adapters/*`, `@ui/*`). Garantir que todos os arquivos de `src/` sejam cobertos pela verificação de tipos.
 
 **Rastreabilidade:** REQ-5 · REQ-8 · NFR-3
 **Depende de:** T-01
@@ -190,7 +190,7 @@
 
 ### T-21: Cobrir SmokeUseCase.execute() — caminho feliz (UT-1)
 
-- [ ] Escrever teste unitário Jest para `SmokeUseCase.execute()` com dados válidos. O teste deve instanciar o use-case com mock de `ISmokePersistenceRepository`, chamar `execute({ label: "test", value: "val" })` e afirmar que o `SmokeResultDto` retornado contém os valores corretos em todos os campos (`id`, `label`, `value`, `createdAt`).
+- [x] Escrever teste unitário Jest para `SmokeUseCase.execute()` com dados válidos. O teste deve instanciar o use-case com mock de `ISmokePersistenceRepository`, chamar `execute({ label: "test", value: "val" })` e afirmar que o `SmokeResultDto` retornado contém os valores corretos em todos os campos (`id`, `label`, `value`, `createdAt`).
 
 **Rastreabilidade:** REQ-5 · UT-1
 **Depende de:** T-06 · T-12
@@ -198,7 +198,7 @@
 
 ### T-22: Cobrir SmokeUseCase.execute() — validação Zod: label vazio (UT-2)
 
-- [ ] Escrever teste unitário Jest que chama `SmokeUseCase.execute({ label: "", value: "val" })` e afirma que uma `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` e `context.field: "label"` é lançada. Verificar que `save()` do mock não é chamado.
+- [x] Escrever teste unitário Jest que chama `SmokeUseCase.execute({ label: "", value: "val" })` e afirma que uma `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` e `context.field: "label"` é lançada. Verificar que `save()` do mock não é chamado.
 
 **Rastreabilidade:** REQ-5 · UT-2
 **Depende de:** T-06 · T-12
@@ -206,7 +206,7 @@
 
 ### T-23: Cobrir SmokeUseCase.execute() — validação Zod: value vazio (UT-3)
 
-- [ ] Escrever teste unitário Jest que chama `SmokeUseCase.execute({ label: "ok", value: "" })` e afirma que `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` e `context.field: "value"` é lançada. Verificar que `save()` não é chamado.
+- [x] Escrever teste unitário Jest que chama `SmokeUseCase.execute({ label: "ok", value: "" })` e afirma que `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` e `context.field: "value"` é lançada. Verificar que `save()` não é chamado.
 
 **Rastreabilidade:** REQ-5 · UT-3
 **Depende de:** T-06 · T-12
@@ -214,7 +214,7 @@
 
 ### T-24: Cobrir SmokeUseCase.execute() — validação Zod: label excede max(100) (UT-4)
 
-- [ ] Escrever teste unitário Jest que chama `SmokeUseCase.execute()` com `label` contendo 101 caracteres e afirma que `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` é lançada. `save()` não deve ser chamado.
+- [x] Escrever teste unitário Jest que chama `SmokeUseCase.execute()` com `label` contendo 101 caracteres e afirma que `DomainError` com `code: "SMOKE_VALIDATION_FAILED"` é lançada. `save()` não deve ser chamado.
 
 **Rastreabilidade:** REQ-5 · UT-4
 **Depende de:** T-06 · T-12
@@ -222,7 +222,7 @@
 
 ### T-25: Cobrir SmokeUseCase.execute() — falha no save() (UT-5)
 
-- [ ] Escrever teste unitário Jest onde o mock de `save()` lança um erro genérico. Afirmar que `SmokeUseCase` relança como `DomainError` com `code: "SMOKE_SAVE_FAILED"` contendo `context.cause`. Verificar que o erro não é silenciado.
+- [x] Escrever teste unitário Jest onde o mock de `save()` lança um erro genérico. Afirmar que `SmokeUseCase` relança como `DomainError` com `code: "SMOKE_SAVE_FAILED"` contendo `context.cause`. Verificar que o erro não é silenciado.
 
 **Rastreabilidade:** REQ-5 · UT-5
 **Depende de:** T-06 · T-12
@@ -230,7 +230,7 @@
 
 ### T-26: Cobrir SmokeUseCase.execute() — falha no findById() (UT-6)
 
-- [ ] Escrever teste unitário Jest onde `save()` retorna item simulado e `findById()` lança erro. Afirmar que `SmokeUseCase` relança como `DomainError` com `code: "SMOKE_READ_FAILED"` contendo `context.id` e `context.cause`.
+- [x] Escrever teste unitário Jest onde `save()` retorna item simulado e `findById()` lança erro. Afirmar que `SmokeUseCase` relança como `DomainError` com `code: "SMOKE_READ_FAILED"` contendo `context.id` e `context.cause`.
 
 **Rastreabilidade:** REQ-5 · UT-6
 **Depende de:** T-06 · T-12
@@ -238,7 +238,7 @@
 
 ### T-27: Cobrir SmokeUseCase.execute() — findById() retorna null (UT-7)
 
-- [ ] Escrever teste unitário Jest onde `findById()` retorna `null` após `save()` bem-sucedido. Afirmar que o `SmokeUseCase` trata a ausência de retorno de forma explícita — seja lançando `DomainError` ou retornando valor nulo mapeado — conforme contrato definido no design.
+- [x] Escrever teste unitário Jest onde `findById()` retorna `null` após `save()` bem-sucedido. Afirmar que o `SmokeUseCase` trata a ausência de retorno de forma explícita — seja lançando `DomainError` ou retornando valor nulo mapeado — conforme contrato definido no design.
 
 **Rastreabilidade:** REQ-5 · UT-7
 **Depende de:** T-06 · T-12
@@ -246,7 +246,7 @@
 
 ### T-28: Cobrir SmokeItemDto — conformidade com schema Zod (UT-8)
 
-- [ ] Escrever teste unitário Jest que exercita o schema Zod de `SmokeItemDto` diretamente, sem instanciar o use-case. Testar: `label: 123` falha; `value: null` falha; input válido (`label: "ok", value: "x"`) é aceito pelo `parse()`.
+- [x] Escrever teste unitário Jest que exercita o schema Zod de `SmokeItemDto` diretamente, sem instanciar o use-case. Testar: `label: 123` falha; `value: null` falha; input válido (`label: "ok", value: "x"`) é aceito pelo `parse()`.
 
 **Rastreabilidade:** REQ-5 · UT-8
 **Depende de:** T-10
@@ -254,7 +254,7 @@
 
 ### T-29: Cobrir SmokeSQLiteRepository.save() com SQLite real (IT-1)
 
-- [ ] Escrever teste de integração Jest para `SmokeSQLiteRepository.save()` usando expo-sqlite em banco de teste (`:memory:` ou arquivo temporário). Afirmar que `save()` retorna `SmokeItem` com `id` numérico gerado e que `findById(id)` após o `save()` retorna o mesmo item.
+- [x] Escrever teste de integração Jest para `SmokeSQLiteRepository.save()` usando expo-sqlite em banco de teste (`:memory:` ou arquivo temporário). Afirmar que `save()` retorna `SmokeItem` com `id` numérico gerado e que `findById(id)` após o `save()` retorna o mesmo item.
 
 **Rastreabilidade:** REQ-5 · NFR-1 · IT-1
 **Depende de:** T-15
@@ -262,7 +262,7 @@
 
 ### T-30: Cobrir SmokeSQLiteRepository.findById() com SQLite real (IT-2)
 
-- [ ] Escrever teste de integração Jest para `SmokeSQLiteRepository.findById()` com banco real. Testar: `findById(id)` com ID existente retorna item correto; `findById(999)` com ID inexistente retorna `null`.
+- [x] Escrever teste de integração Jest para `SmokeSQLiteRepository.findById()` com banco real. Testar: `findById(id)` com ID existente retorna item correto; `findById(999)` com ID inexistente retorna `null`.
 
 **Rastreabilidade:** REQ-5 · IT-2
 **Depende de:** T-15
@@ -270,7 +270,7 @@
 
 ### T-31: Cobrir infrastructure/database/ — inicialização e idempotência de migration (IT-3)
 
-- [ ] Escrever teste de integração Jest que inicializa o módulo `infrastructure/database/` duas vezes no mesmo banco de teste. Afirmar que: a tabela `SmokeItem` é criada na primeira execução com as colunas corretas (verificadas via `PRAGMA table_info`); a segunda execução não lança erro.
+- [x] Escrever teste de integração Jest que inicializa o módulo `infrastructure/database/` duas vezes no mesmo banco de teste. Afirmar que: a tabela `SmokeItem` é criada na primeira execução com as colunas corretas (verificadas via `PRAGMA table_info`); a segunda execução não lança erro.
 
 **Rastreabilidade:** REQ-5 · NFR-1 · IT-3
 **Depende de:** T-14
@@ -278,7 +278,7 @@
 
 ### T-32: Cobrir infrastructure/container/ — resolução de dependências (IT-6)
 
-- [ ] Escrever teste de integração Jest que resolve `SmokeUseCase` via container real (sem mock) apontando para banco de teste. Chamar `execute(dto)` e afirmar que `SmokeResultDto` retornado contém os dados corretos. Verificar que o container não instancia use-case diretamente em componente (regra 21 da constitution).
+- [x] Escrever teste de integração Jest que resolve `SmokeUseCase` via container real (sem mock) apontando para banco de teste. Chamar `execute(dto)` e afirmar que `SmokeResultDto` retornado contém os dados corretos. Verificar que o container não instancia use-case diretamente em componente (regra 21 da constitution).
 
 **Rastreabilidade:** REQ-5 · IT-6
 **Depende de:** T-17
@@ -292,7 +292,7 @@
 
 ### T-33: Validar geração do projeto nativo via expo prebuild
 
-- [ ] Garantir que `app.json` (ou `app.config.ts`) está corretamente configurado para que `npx expo prebuild` gere as pastas `android/` e `ios/` sem erros. Documentar no README.md o comando e pré-requisitos (Node.js, ferramentas nativas). Verificar que o `.gitignore` exclui `android/` e `ios/` (gerados — não versionados).
+- [x] Garantir que `app.json` (ou `app.config.ts`) está corretamente configurado para que `npx expo prebuild` gere as pastas `android/` e `ios/` sem erros. Documentar no README.md o comando e pré-requisitos (Node.js, ferramentas nativas). Verificar que o `.gitignore` exclui `android/` e `ios/` (gerados — não versionados).
 
 **Rastreabilidade:** REQ-6
 **Depende de:** T-03
@@ -306,7 +306,7 @@
 
 ### T-34: Configurar Detox e @cucumber/cucumber para E2E
 
-- [ ] Criar `e2e/detox.config.ts` com configurações para ao menos dois alvos: `android.emu.debug` e `ios.sim.debug`. Criar estrutura de diretórios `e2e/features/`, `e2e/step-definitions/` e `e2e/support/`. Configurar `@cucumber/cucumber` como runner de steps. Garantir que `detox build --configuration <target>` compila sem erros após `expo prebuild`.
+- [x] Criar `e2e/detox.config.ts` com configurações para ao menos dois alvos: `android.emu.debug` e `ios.sim.debug`. Criar estrutura de diretórios `e2e/features/`, `e2e/step-definitions/` e `e2e/support/`. Configurar `@cucumber/cucumber` como runner de steps. Garantir que `detox build --configuration <target>` compila sem erros após `expo prebuild`.
 
 **Rastreabilidade:** REQ-7
 **Depende de:** T-33
@@ -320,7 +320,7 @@
 
 ### T-35: Verificar ausência de any e conformidade com strict mode
 
-- [ ] Configurar a regra ESLint `@typescript-eslint/no-explicit-any` como `error` no arquivo `.eslintrc.js` (ou `eslint.config.js`). Garantir que `npx tsc --noEmit` com `strict: true` passa sem erros. Configurar scripts no `package.json`: `"lint": "eslint src --ext .ts,.tsx"` e `"typecheck": "tsc --noEmit"`.
+- [x] Configurar a regra ESLint `@typescript-eslint/no-explicit-any` como `error` no arquivo `.eslintrc.js` (ou `eslint.config.js`). Garantir que `npx tsc --noEmit` com `strict: true` passa sem erros. Configurar scripts no `package.json`: `"lint": "eslint src --ext .ts,.tsx"` e `"typecheck": "tsc --noEmit"`.
 
 **Rastreabilidade:** REQ-8 · NFR-3
 **Depende de:** T-20
@@ -334,7 +334,7 @@
 
 ### T-36: Criar README.md com os 4 procedimentos obrigatórios
 
-- [ ] Criar `README.md` na raiz do projeto documentando com exemplos de comandos os 4 procedimentos: (1) instalação de dependências (`npm install`); (2) execução em desenvolvimento (`npx expo start`); (3) testes unitários (`npm test`); (4) testes E2E (`expo prebuild` → `detox build` → `detox test`). Incluir pré-requisitos de ambiente (Node.js, simulador, etc.).
+- [x] Criar `README.md` na raiz do projeto documentando com exemplos de comandos os 4 procedimentos: (1) instalação de dependências (`npm install`); (2) execução em desenvolvimento (`npx expo start`); (3) testes unitários (`npm test`); (4) testes E2E (`expo prebuild` → `detox build` → `detox test`). Incluir pré-requisitos de ambiente (Node.js, simulador, etc.).
 
 **Rastreabilidade:** REQ-9 · NFR-4
 **Depende de:** —
@@ -346,7 +346,7 @@
 
 ### T-37: Cobrir adapters/storage/SecureStorageService — leitura e escrita (IT-4)
 
-- [ ] Escrever teste de integração para o wrapper de `expo-secure-store`. Testar: `set(key, value)` seguido de `get(key)` retorna o valor armazenado; `get(key)` com chave inexistente retorna `null`; `delete(key)` seguido de `get(key)` retorna `null`. Limpar o keychain antes de cada teste.
+- [x] Escrever teste de integração para o wrapper de `expo-secure-store`. Testar: `set(key, value)` seguido de `get(key)` retorna o valor armazenado; `get(key)` com chave inexistente retorna `null`; `delete(key)` seguido de `get(key)` retorna `null`. Limpar o keychain antes de cada teste.
 
 **Rastreabilidade:** NFR-1 · IT-4
 **Depende de:** T-16
@@ -354,7 +354,7 @@
 
 ### T-38: Cobrir adapters/storage/AsyncStorageService — leitura e escrita (IT-5)
 
-- [ ] Escrever teste de integração para o wrapper de `AsyncStorage`. Testar: `set(key, value)` seguido de `get(key)` retorna o valor; `get(key)` com chave inexistente retorna `null`; `clear()` remove todas as chaves. Limpar AsyncStorage antes de cada teste.
+- [x] Escrever teste de integração para o wrapper de `AsyncStorage`. Testar: `set(key, value)` seguido de `get(key)` retorna o valor; `get(key)` com chave inexistente retorna `null`; `clear()` remove todas as chaves. Limpar AsyncStorage antes de cada teste.
 
 **Rastreabilidade:** NFR-1 · IT-5
 **Depende de:** T-16
@@ -362,7 +362,7 @@
 
 ### T-39: Verificar isolamento de SecureStore e AsyncStorage fora de ui/ e domain/ (ST-1)
 
-- [ ] Configurar regra ESLint ou script de análise estática que verifica que nenhum arquivo em `src/ui/` ou `src/domain/` importa `expo-secure-store` ou `AsyncStorage` diretamente. Executar a verificação no pipeline de lint (`npm run lint`).
+- [x] Configurar regra ESLint ou script de análise estática que verifica que nenhum arquivo em `src/ui/` ou `src/domain/` importa `expo-secure-store` ou `AsyncStorage` diretamente. Executar a verificação no pipeline de lint (`npm run lint`).
 
 **Rastreabilidade:** NFR-1 · ST-1
 **Depende de:** T-35
@@ -370,7 +370,7 @@
 
 ### T-40: Verificar isolamento de dependências externas em domain/ (ST-2)
 
-- [ ] Configurar regra ESLint ou script de análise estática que verifica que nenhum arquivo em `src/domain/` importa de `adapters/`, `infrastructure/`, `ui/` ou qualquer biblioteca exceto `zod`. Integrar ao script `npm run lint`.
+- [x] Configurar regra ESLint ou script de análise estática que verifica que nenhum arquivo em `src/domain/` importa de `adapters/`, `infrastructure/`, `ui/` ou qualquer biblioteca exceto `zod`. Integrar ao script `npm run lint`.
 
 **Rastreabilidade:** NFR-3 · ST-2
 **Depende de:** T-35
@@ -378,7 +378,7 @@
 
 ### T-41: Verificar ausência de SDKs de rede não autorizados (ST-3)
 
-- [ ] Adicionar verificação no script de lint ou CI que confirma ausência de `axios`, `firebase`, `@firebase/*`, `supabase`, `@supabase/supabase-js` nas dependências de `package.json`. Verificar também ausência de chamadas `fetch()` para URLs externas em `src/`.
+- [x] Adicionar verificação no script de lint ou CI que confirma ausência de `axios`, `firebase`, `@firebase/*`, `supabase`, `@supabase/supabase-js` nas dependências de `package.json`. Verificar também ausência de chamadas `fetch()` para URLs externas em `src/`.
 
 **Rastreabilidade:** NFR-1 · ST-3
 **Depende de:** T-01
