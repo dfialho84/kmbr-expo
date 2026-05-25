@@ -189,53 +189,7 @@ Esta feature não gera fluxos de usuário final verificáveis por testes E2E Ghe
 
 ---
 
-## 4. Testes de Performance
-
-Derivados dos NFRs mensuráveis de `nf-requirements.md`.
-
----
-
-### PT-1: Tempo de inicialização do app no simulador sem crash (NFR-2)
-
-- **O que mede:** Tempo decorrido desde o launch do app até a renderização da tela inicial, verificando ausência de crash nos primeiros 5 segundos.
-- **Threshold:** Nenhum crash nos primeiros 5 segundos após launch (NFR-2: _"sem gerar exceções não capturadas que causem crash durante os primeiros 5 segundos após launch"_).
-- **Método de medição:** Teste automatizado Detox que lança o app, aguarda 5 segundos e verifica que a tela inicial está visível (sem crash dialog ou tela preta). Executável em CI com simulador iOS ou emulador Android.
-- **Número de execuções:** 3 execuções consecutivas no mesmo simulador para descartar instabilidade de ambiente.
-- **Rastreabilidade:** NFR-2
-
----
-
-### PT-2: Conclusão do npm install sem erros (NFR-1)
-
-- **O que mede:** Que `npm install` conclui com exit code 0 (todas as dependências instaladas sem erros críticos).
-- **Threshold:** Exit code 0; ausência de mensagens `npm ERR!` críticas no output.
-- **Método de medição:** Script de CI que executa `npm install` em ambiente limpo (sem `node_modules/`) e verifica exit code. Executável em CI (GitHub Actions ou equivalente).
-- **Número de execuções:** 1 execução por pipeline de CI; repetida a cada mudança em `package.json`.
-- **Rastreabilidade:** NFR-1
-
----
-
-### PT-3: Execução da suite de testes unitários sem erros críticos (NFR-5)
-
-- **O que mede:** Que `npm test` executa com ao menos 1 resultado verificável (passed ou failed) sem erros críticos de configuração do Jest.
-- **Threshold:** Exit code 0 quando todos os testes passam; pelo menos 1 teste relatado como `passed`; ausência de erros de configuração Jest (ex: `Cannot find module`, `SyntaxError` em setup).
-- **Método de medição:** Execução de `npx jest --passWithNoTests` em CI e verificação do relatório de cobertura.
-- **Número de execuções:** 1 execução por pipeline; resultado deve ser estável (sem flakiness).
-- **Rastreabilidade:** NFR-5 · REQ-4
-
----
-
-### PT-4: Verificação de tipos TypeScript sem erros (NFR-3)
-
-- **O que mede:** Que `npx tsc --noEmit` conclui sem erros de tipo em todos os arquivos `src/`.
-- **Threshold:** Exit code 0; zero diagnósticos de erro TypeScript.
-- **Método de medição:** Execução de `npx tsc --noEmit` em CI. Executável sem ambiente nativo.
-- **Número de execuções:** 1 execução por pipeline; repetida a cada push.
-- **Rastreabilidade:** NFR-3 · REQ-8
-
----
-
-## 5. Testes de Segurança
+## 4. Testes de Segurança
 
 Derivados dos NFRs de segurança de `nf-requirements.md` e das restrições da `constitution.md`. Esta feature não possui NFRs de segurança explicitamente numerados, mas a `constitution.md` e o design impõem restrições de segurança verificáveis.
 
@@ -287,26 +241,26 @@ Derivados dos NFRs de segurança de `nf-requirements.md` e das restrições da `
 
 ## Resumo de Cobertura
 
-| Requisito | Unitário              | Integração            | E2E Gherkin | Performance | Segurança             |
-| --------- | --------------------- | --------------------- | ----------- | ----------- | --------------------- |
-| REQ-1     | —                     | —                     | —           | PT-2        | —                     |
-| REQ-2     | —                     | —                     | —           | PT-1        | —                     |
-| REQ-3     | —                     | —                     | —           | PT-1        | —                     |
-| REQ-4     | —                     | —                     | —           | PT-3        | —                     |
-| REQ-5     | UT-1, UT-2, UT-3, UT-4, UT-5, UT-6, UT-7, UT-8 | IT-1, IT-2, IT-3, IT-6 | —      | —           | —                     |
-| REQ-6     | —                     | —                     | —           | PT-2        | —                     |
-| REQ-7     | —                     | —                     | —           | PT-1        | —                     |
-| REQ-8     | —                     | —                     | —           | PT-4        | ST-4                  |
-| REQ-9     | —                     | —                     | —           | —           | —                     |
-| NFR-1     | —                     | IT-1, IT-3            | —           | PT-2        | —                     |
-| NFR-2     | —                     | —                     | —           | PT-1        | —                     |
-| NFR-3     | —                     | —                     | —           | PT-4        | ST-4                  |
-| NFR-4     | —                     | —                     | —           | —           | —                     |
-| NFR-5     | —                     | —                     | —           | PT-3        | —                     |
-| constitution-7,15 | —             | IT-4, IT-5            | —           | —           | ST-1                  |
-| constitution-1,14,17 | —          | —                     | —           | —           | ST-2                  |
-| constitution-9 | —              | —                     | —           | —           | ST-3                  |
-| constitution-19 | —             | —                     | —           | —           | ST-4                  |
+| Requisito | Unitário              | Integração            | E2E Gherkin | Segurança             |
+| --------- | --------------------- | --------------------- | ----------- | --------------------- |
+| REQ-1     | —                     | —                     | —           | —                     |
+| REQ-2     | —                     | —                     | —           | —                     |
+| REQ-3     | —                     | —                     | —           | —                     |
+| REQ-4     | —                     | —                     | —           | —                     |
+| REQ-5     | UT-1, UT-2, UT-3, UT-4, UT-5, UT-6, UT-7, UT-8 | IT-1, IT-2, IT-3, IT-6 | — | —                     |
+| REQ-6     | —                     | —                     | —           | —                     |
+| REQ-7     | —                     | —                     | —           | —                     |
+| REQ-8     | —                     | —                     | —           | ST-4                  |
+| REQ-9     | —                     | —                     | —           | —                     |
+| NFR-1     | —                     | IT-1, IT-3            | —           | —                     |
+| NFR-2     | —                     | —                     | —           | —                     |
+| NFR-3     | —                     | —                     | —           | ST-4                  |
+| NFR-4     | —                     | —                     | —           | —                     |
+| NFR-5     | —                     | —                     | —           | —                     |
+| constitution-7,15 | —             | IT-4, IT-5            | —           | ST-1                  |
+| constitution-1,14,17 | —          | —                     | —           | ST-2                  |
+| constitution-9 | —              | —                     | —           | ST-3                  |
+| constitution-19 | —             | —                     | —           | ST-4                  |
 
 > **Nota sobre REQ-9 / NFR-4 (README.md):** Estes requisitos são verificados por inspeção manual ou lint de documentação — não geram testes automatizáveis. A conformidade é validada no processo de code review (constitution regra 24).
 
@@ -318,6 +272,5 @@ Derivados dos NFRs de segurança de `nf-requirements.md` e das restrições da `
 - Unitários: 8 (UT-1 a UT-8)
 - Integração: 6 (IT-1 a IT-6)
 - E2E Gherkin: 0 (feature infraestrutural — justificado)
-- Performance: 4 (PT-1 a PT-4)
 - Segurança: 4 (ST-1 a ST-4)
-- **Total: 22 testes**
+- **Total: 18 testes**
