@@ -2,9 +2,13 @@
   "compilerOptions": {
     "strict": true,
     "ignoreDeprecations": "6.0",
-    "types": ["jest"],
+    "types": [
+      "jest"
+    ],
     "target": "ES2020",
-    "lib": ["ES2020"],
+    "lib": [
+      "ES2020"
+    ],
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -17,15 +21,38 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@domain/*": ["src/domain/*"],
-      "@application/*": ["src/application/*"],
-      "@adapters/*": ["src/adapters/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
-      "@ui/*": ["src/ui/*"],
-      "@mocks/*": ["src/__mocks__/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@domain/*": [
+        "src/domain/*"
+      ],
+      "@application/*": [
+        "src/application/*"
+      ],
+      "@adapters/*": [
+        "src/adapters/*"
+      ],
+      "@infrastructure/*": [
+        "src/infrastructure/*"
+      ],
+      "@ui/*": [
+        "src/ui/*"
+      ],
+      "@mocks/*": [
+        "src/__mocks__/*"
+      ]
     }
   },
-  "include": ["src", "global.d.ts"],
-  "exclude": ["node_modules", "src/**/__tests__", "e2e"]
+  "include": [
+    "src",
+    "global.d.ts",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/__tests__",
+    "e2e"
+  ],
+  "extends": "expo/tsconfig.base"
 }
