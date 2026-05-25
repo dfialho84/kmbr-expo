@@ -25,22 +25,6 @@ module.exports = {
           ['@babel/preset-typescript'],
           ['@babel/preset-react', { runtime: 'automatic' }],
         ],
-        plugins: [
-          [
-            'module-resolver',
-            {
-              alias: {
-                '@': './src',
-                '@domain': './src/domain',
-                '@application': './src/application',
-                '@adapters': './src/adapters',
-                '@infrastructure': './src/infrastructure',
-                '@ui': './src/ui',
-                '@mocks': './src/__mocks__',
-              },
-            },
-          ],
-        ],
       },
     ],
   },
