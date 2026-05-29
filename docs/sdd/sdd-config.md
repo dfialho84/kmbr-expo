@@ -1,3 +1,0 @@
-# SDD Configuration
-
-language: Português
