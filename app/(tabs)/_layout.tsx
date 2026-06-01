@@ -1,10 +1,19 @@
+import colors from "@/constants/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 
 export default function TabLayout() {
     return (
-        <Tabs>
+        <Tabs
+            screenOptions={{
+                headerShadowVisible: false,
+                headerTintColor: colors.primaryForegorund,
+                headerStyle: {
+                    backgroundColor: colors.primary,
+                },
+            }}
+        >
             <Tabs.Screen
                 name="index"
                 options={{
@@ -19,7 +28,11 @@ export default function TabLayout() {
                 options={{
                     title: "Corridas",
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="directions-car" color={color} size={size} />
+                        <MaterialIcons
+                            name="directions-car"
+                            color={color}
+                            size={size}
+                        />
                     ),
                 }}
             />
@@ -28,7 +41,11 @@ export default function TabLayout() {
                 options={{
                     title: "Despesas",
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="account-balance-wallet" color={color} size={size} />
+                        <MaterialIcons
+                            name="account-balance-wallet"
+                            color={color}
+                            size={size}
+                        />
                     ),
                 }}
             />
