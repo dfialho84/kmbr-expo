@@ -22,7 +22,7 @@ export default function CircleButton({
                 className,
             ])}
             style={{ backgroundColor: colors.primary }}
-            onPress={() => {}}
+            {...props}
         >
             <MaterialIcons
                 name={iconName}
