@@ -1,45 +1,74 @@
 import AddCorridaForm from "@/components/corridas/AddCorridaForm";
+import CorridasHeader from "@/components/corridas/CorridasHeader";
+import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
+import { useCorridas } from "@/hooks/use-corridas";
+import { Corrida } from "@/types/corrida";
 import React, { useState } from "react";
 import { FlatList, Modal, Text, View } from "react-native";
 
-const itens = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
+type EmptyListProps = {
+    onPress: () => void;
+};
+
+function EmptyList({ onPress }: EmptyListProps) {
+    return (
+        <View className="mx-4 flex gap-4">
+            <Text className="text-muted-foreground">
+                Nenhuma corrida ainda!
+            </Text>
+            <Button label="Adicionar Corrida" onPress={onPress} />
+        </View>
+    );
+}
+
+function CorridaItem({ corrida }: { corrida: Corrida }) {
+    return (
+        <View className="px-4 py-3 border-b border-border">
+            <Text className="text-foreground font-medium">
+                {corrida.descricao}
+            </Text>
+            <Text className="text-muted-foreground text-sm">
+                {corrida.data.toLocaleDateString("pt-BR")} · {corrida.kmInicial}{" "}
+                → {corrida.kmFinal} km · R$ {corrida.valor.toFixed(2)}
+            </Text>
+        </View>
+    );
+}
 
 export default function Corridas() {
-    const [showAddModel, setShowAddModel] = useState<boolean>(false);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const { corridas, addCorrida } = useCorridas();
 
     return (
         <View className="flex-1 bg-background">
             <FlatList
-                ListHeaderComponent={() => <Text>Eu sou o Header</Text>}
-                data={itens}
-                renderItem={({ item }) => (
-                    <Text className="text-4xl text-foreground">{item}</Text>
-                )}
-                keyExtractor={(item) => String(item)}
+                ListHeaderComponent={CorridasHeader}
+                ListEmptyComponent={
+                    <EmptyList onPress={() => setShowAddModal(true)} />
+                }
+                data={corridas}
+                renderItem={({ item }) => <CorridaItem corrida={item} />}
+                keyExtractor={(item) => item.id}
             />
             <CircleButton
                 iconName="add"
                 className="absolute bottom-6 right-6"
-                onPress={() => setShowAddModel(true)}
+                onPress={() => setShowAddModal(true)}
             />
-            <View>
-                <Modal
-                    visible={showAddModel}
-                    onRequestClose={() => setShowAddModel(false)}
-                    transparent
-                >
-                    <AddCorridaForm
-                        onSave={(data) => {
-                            alert(JSON.stringify(data));
-                            setShowAddModel(false);
-                        }}
-                        onCancel={() => setShowAddModel(false)}
-                    />
-                </Modal>
-            </View>
+            <Modal
+                visible={showAddModal}
+                onRequestClose={() => setShowAddModal(false)}
+                transparent
+            >
+                <AddCorridaForm
+                    onSave={async (data) => {
+                        await addCorrida(data);
+                        setShowAddModal(false);
+                    }}
+                    onCancel={() => setShowAddModal(false)}
+                />
+            </Modal>
         </View>
     );
 }
