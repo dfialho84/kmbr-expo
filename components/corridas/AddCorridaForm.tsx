@@ -7,13 +7,24 @@ import FormDateField from "../form/FormDateField";
 import FormMoneyField from "../form/FormMoneyField";
 import FormTextField from "../form/FormTextField";
 
-const corridaSchema = z.object({
-    data: z.date(),
-    descricao: z.string().min(1, "Descrição é obrigatória"),
-    kmInicial: z.number(),
-    kmFinal: z.number(),
-    valor: z.number(),
-});
+const corridaSchema = z
+    .object({
+        data: z.date(),
+        descricao: z.string().min(1, "Descrição é obrigatória"),
+        kmInicial: z
+            .number()
+            .int("Km inicial deve ser um número inteiro")
+            .min(0, "Km inicial deve ser maior que zero"),
+        kmFinal: z
+            .number()
+            .int("Km final deve ser um número inteiro")
+            .min(0, "Km final deve ser maior que zero"),
+        valor: z.number().min(0, "Valor deve ser maior que zero"),
+    })
+    .refine((data) => data.kmFinal >= data.kmInicial, {
+        message: "Km final deve ser maior ou igual ao Km inicial",
+        path: ["kmFinal"],
+    });
 
 type CorridaFormData = z.infer<typeof corridaSchema>;
 
