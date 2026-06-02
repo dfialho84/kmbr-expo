@@ -1,8 +1,21 @@
 import CircleButton from "@/components/ui/CircleButton";
 import Label from "@/components/ui/Label";
 import TextInput from "@/components/ui/TextInput";
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FlatList, Modal, Text, View } from "react-native";
+import { z } from "zod";
+
+const corridaSchema = z.object({
+    data: z.string(),
+    descricao: z.string(),
+    kmInicial: z.number(),
+    kmFinal: z.number(),
+    valor: z.number(),
+});
+
+type CorridaFormData = z.infer<typeof corridaSchema>;
 
 const itens = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -15,6 +28,9 @@ export default function Corridas() {
     const [kmInicial, setKmInicial] = useState("");
     const [kmFinal, setKmFinal] = useState("");
     const [valor, setValor] = useState("");
+    const corridaForm = useForm<CorridaFormData>({
+        resolver: zodResolver(corridaSchema),
+    });
 
     return (
         <View className="flex-1 bg-background">
@@ -48,7 +64,6 @@ export default function Corridas() {
                                 <View className="gap-1">
                                     <Label>Data</Label>
                                     <TextInput
-                                        className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="dd/mm/aaaa"
                                         value={data}
                                         onChangeText={setData}
@@ -58,7 +73,6 @@ export default function Corridas() {
                                 <View className="gap-1">
                                     <Label>Descrição</Label>
                                     <TextInput
-                                        className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="Ex: Entrega centro"
                                         value={descricao}
                                         onChangeText={setDescricao}
@@ -68,7 +82,6 @@ export default function Corridas() {
                                     <View className="flex-1 gap-1">
                                         <Label>Km Inicial</Label>
                                         <TextInput
-                                            className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                             placeholder="0"
                                             value={kmInicial}
                                             onChangeText={setKmInicial}
@@ -78,7 +91,6 @@ export default function Corridas() {
                                     <View className="flex-1 gap-1">
                                         <Label>Km Final</Label>
                                         <TextInput
-                                            className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                             placeholder="0"
                                             value={kmFinal}
                                             onChangeText={setKmFinal}
@@ -89,7 +101,6 @@ export default function Corridas() {
                                 <View className="gap-1">
                                     <Label>Valor (R$)</Label>
                                     <TextInput
-                                        className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="R$ 0,00"
                                         value={valor}
                                         onChangeText={setValor}
