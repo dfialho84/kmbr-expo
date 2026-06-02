@@ -1,21 +1,7 @@
+import AddCorridaForm from "@/components/corridas/AddCorridaForm";
 import CircleButton from "@/components/ui/CircleButton";
-import Label from "@/components/ui/Label";
-import TextInput from "@/components/ui/TextInput";
-import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { FlatList, Modal, Text, View } from "react-native";
-import { z } from "zod";
-
-const corridaSchema = z.object({
-    data: z.string(),
-    descricao: z.string(),
-    kmInicial: z.number(),
-    kmFinal: z.number(),
-    valor: z.number(),
-});
-
-type CorridaFormData = z.infer<typeof corridaSchema>;
 
 const itens = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -23,14 +9,6 @@ const itens = [
 
 export default function Corridas() {
     const [showAddModel, setShowAddModel] = useState<boolean>(false);
-    const [data, setData] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [kmInicial, setKmInicial] = useState("");
-    const [kmFinal, setKmFinal] = useState("");
-    const [valor, setValor] = useState("");
-    const corridaForm = useForm<CorridaFormData>({
-        resolver: zodResolver(corridaSchema),
-    });
 
     return (
         <View className="flex-1 bg-background">
@@ -53,63 +31,13 @@ export default function Corridas() {
                     onRequestClose={() => setShowAddModel(false)}
                     transparent
                 >
-                    <View className="items-center justify-center bg-gray-500/50 flex-1">
-                        <View className="bg-card border border-border p-4 rounded-lg shadow-lg w-3/4 gap-4">
-                            <View>
-                                <Text className="text-2xl font-bold text-primary">
-                                    Nova Corrida
-                                </Text>
-                            </View>
-                            <View className="gap-3">
-                                <View className="gap-1">
-                                    <Label>Data</Label>
-                                    <TextInput
-                                        placeholder="dd/mm/aaaa"
-                                        value={data}
-                                        onChangeText={setData}
-                                        keyboardType="numeric"
-                                    />
-                                </View>
-                                <View className="gap-1">
-                                    <Label>Descrição</Label>
-                                    <TextInput
-                                        placeholder="Ex: Entrega centro"
-                                        value={descricao}
-                                        onChangeText={setDescricao}
-                                    />
-                                </View>
-                                <View className="flex-row gap-3">
-                                    <View className="flex-1 gap-1">
-                                        <Label>Km Inicial</Label>
-                                        <TextInput
-                                            placeholder="0"
-                                            value={kmInicial}
-                                            onChangeText={setKmInicial}
-                                            keyboardType="numeric"
-                                        />
-                                    </View>
-                                    <View className="flex-1 gap-1">
-                                        <Label>Km Final</Label>
-                                        <TextInput
-                                            placeholder="0"
-                                            value={kmFinal}
-                                            onChangeText={setKmFinal}
-                                            keyboardType="numeric"
-                                        />
-                                    </View>
-                                </View>
-                                <View className="gap-1">
-                                    <Label>Valor (R$)</Label>
-                                    <TextInput
-                                        placeholder="R$ 0,00"
-                                        value={valor}
-                                        onChangeText={setValor}
-                                        keyboardType="numeric"
-                                    />
-                                </View>
-                            </View>
-                        </View>
-                    </View>
+                    <AddCorridaForm
+                        onSave={(data) => {
+                            alert(JSON.stringify(data));
+                            setShowAddModel(false);
+                        }}
+                        onCancel={() => setShowAddModel(false)}
+                    />
                 </Modal>
             </View>
         </View>

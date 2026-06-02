@@ -1,8 +1,8 @@
-import Label from "@/components/ui/Label";
 import React from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { View } from "react-native";
-import TextInput from "../ui/TextInput";
+import DateInput from "../ui/DateInput";
+import Label from "../ui/Label";
 import ErrorLabel from "./ErrorLabel";
 
 type Props<T extends FieldValues> = React.ComponentProps<typeof View> & {
@@ -10,17 +10,13 @@ type Props<T extends FieldValues> = React.ComponentProps<typeof View> & {
     name: Path<T>;
     label: string;
     placeholder?: string;
-    keyboardType?: React.ComponentProps<typeof TextInput>["keyboardType"];
-    valueAsNumber?: boolean;
 };
 
-export default function FormTextField<T extends FieldValues>({
-    control,
+export default function FormDateField<T extends FieldValues>({
     name,
-    label,
+    control,
     placeholder,
-    keyboardType,
-    valueAsNumber,
+    label,
     ...props
 }: Props<T>) {
     return (
@@ -30,19 +26,11 @@ export default function FormTextField<T extends FieldValues>({
             render={({ field, fieldState }) => (
                 <View {...props}>
                     <Label>{label}</Label>
-                    <TextInput
+                    <DateInput
                         placeholder={placeholder}
-                        value={valueAsNumber && field.value != null ? String(field.value) : field.value}
-                        onChangeText={(text) => {
-                            if (valueAsNumber) {
-                                const n = parseFloat(text.replace(",", "."));
-                                field.onChange(isNaN(n) ? undefined : n);
-                            } else {
-                                field.onChange(text);
-                            }
-                        }}
+                        value={field.value}
+                        onChangeDate={field.onChange}
                         onBlur={field.onBlur}
-                        keyboardType={keyboardType}
                     />
                     {fieldState.error && (
                         <ErrorLabel
