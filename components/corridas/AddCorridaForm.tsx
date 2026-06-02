@@ -1,11 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { z } from "zod";
 import FormDateField from "../form/FormDateField";
 import FormMoneyField from "../form/FormMoneyField";
 import FormTextField from "../form/FormTextField";
+import Button from "../ui/Button";
 
 const corridaSchema = z
     .object({
@@ -95,22 +96,15 @@ export default function AddCorridaForm({ onSave, onCancel }: Props) {
                         label="Valor (R$)"
                     />
                     <View className="flex-row justify-end gap-2 mt-4">
-                        <Pressable
-                            onPress={() => {
-                                corridaForm.handleSubmit((data) => {
-                                    onSave(data);
-                                })();
-                            }}
-                        >
-                            <Text>Salvar</Text>
-                        </Pressable>
-                        <Pressable
-                            onPress={() => {
-                                onCancel();
-                            }}
-                        >
-                            <Text>Cancelar</Text>
-                        </Pressable>
+                        <Button
+                            label="Salvar"
+                            onPress={corridaForm.handleSubmit(onSave)}
+                        />
+                        <Button
+                            label="Cancelar"
+                            variant="secondary"
+                            onPress={onCancel}
+                        />
                     </View>
                 </View>
             </View>
