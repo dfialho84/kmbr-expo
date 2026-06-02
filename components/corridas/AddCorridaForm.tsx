@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
 import { z } from "zod";
 import FormDateField from "../form/FormDateField";
+import FormMoneyField from "../form/FormMoneyField";
 import FormTextField from "../form/FormTextField";
 
 const corridaSchema = z.object({
@@ -76,14 +77,11 @@ export default function AddCorridaForm({ onSave, onCancel }: Props) {
                             valueAsNumber
                         />
                     </View>
-                    <FormTextField
+                    <FormMoneyField
                         className="gap-1"
                         control={corridaForm.control}
                         name="valor"
                         label="Valor (R$)"
-                        placeholder="0,00"
-                        keyboardType="numeric"
-                        valueAsNumber
                     />
                     <View className="flex-row justify-end gap-2 mt-4">
                         <Pressable
