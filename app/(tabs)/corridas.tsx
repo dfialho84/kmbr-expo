@@ -1,4 +1,5 @@
 import CircleButton from "@/components/ui/CircleButton";
+import Label from "@/components/ui/Label";
 import React, { useState } from "react";
 import { FlatList, Modal, Text, TextInput, View } from "react-native";
 
@@ -44,7 +45,7 @@ export default function Corridas() {
                             </View>
                             <View className="gap-3">
                                 <View className="gap-1">
-                                    <Text className="text-sm font-medium text-foreground">Data</Text>
+                                    <Label>Data</Label>
                                     <TextInput
                                         className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="dd/mm/aaaa"
@@ -54,7 +55,7 @@ export default function Corridas() {
                                     />
                                 </View>
                                 <View className="gap-1">
-                                    <Text className="text-sm font-medium text-foreground">Descrição</Text>
+                                    <Label>Descrição</Label>
                                     <TextInput
                                         className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="Ex: Entrega centro"
@@ -64,7 +65,7 @@ export default function Corridas() {
                                 </View>
                                 <View className="flex-row gap-3">
                                     <View className="flex-1 gap-1">
-                                        <Text className="text-sm font-medium text-foreground">Km Inicial</Text>
+                                        <Label>Km Inicial</Label>
                                         <TextInput
                                             className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                             placeholder="0"
@@ -74,7 +75,7 @@ export default function Corridas() {
                                         />
                                     </View>
                                     <View className="flex-1 gap-1">
-                                        <Text className="text-sm font-medium text-foreground">Km Final</Text>
+                                        <Label>Km Final</Label>
                                         <TextInput
                                             className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                             placeholder="0"
@@ -85,7 +86,7 @@ export default function Corridas() {
                                     </View>
                                 </View>
                                 <View className="gap-1">
-                                    <Text className="text-sm font-medium text-foreground">Valor</Text>
+                                    <Label>Valor (R$)</Label>
                                     <TextInput
                                         className="border border-border rounded-md px-3 py-2 text-foreground bg-background"
                                         placeholder="R$ 0,00"
