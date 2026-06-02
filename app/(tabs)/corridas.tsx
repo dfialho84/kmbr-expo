@@ -1,7 +1,8 @@
 import CircleButton from "@/components/ui/CircleButton";
 import Label from "@/components/ui/Label";
+import TextInput from "@/components/ui/TextInput";
 import React, { useState } from "react";
-import { FlatList, Modal, Text, TextInput, View } from "react-native";
+import { FlatList, Modal, Text, View } from "react-native";
 
 const itens = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
