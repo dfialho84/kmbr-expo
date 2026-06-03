@@ -1,9 +1,34 @@
 import Label from "@/components/ui/Label";
-import React from "react";
+import React, { useState } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { View } from "react-native";
 import TextInput from "../ui/TextInput";
 import ErrorLabel from "./ErrorLabel";
+
+type NumberInputProps = {
+    initialValue: number | undefined;
+    onChange: (value: number | undefined) => void;
+    onBlur: () => void;
+    placeholder?: string;
+    keyboardType?: React.ComponentProps<typeof TextInput>["keyboardType"];
+};
+
+function NumberInput({ initialValue, onChange, onBlur, placeholder, keyboardType }: NumberInputProps) {
+    const [text, setText] = useState(initialValue != null ? String(initialValue) : "");
+    return (
+        <TextInput
+            placeholder={placeholder}
+            value={text}
+            onChangeText={(newText) => {
+                setText(newText);
+                const n = parseFloat(newText.replace(",", "."));
+                onChange(isNaN(n) ? undefined : n);
+            }}
+            onBlur={onBlur}
+            keyboardType={keyboardType}
+        />
+    );
+}
 
 type Props<T extends FieldValues> = React.ComponentProps<typeof View> & {
     control: Control<T>;
@@ -30,20 +55,23 @@ export default function FormTextField<T extends FieldValues>({
             render={({ field, fieldState }) => (
                 <View {...props}>
                     <Label>{label}</Label>
-                    <TextInput
-                        placeholder={placeholder}
-                        value={valueAsNumber && field.value != null ? String(field.value) : field.value}
-                        onChangeText={(text) => {
-                            if (valueAsNumber) {
-                                const n = parseFloat(text.replace(",", "."));
-                                field.onChange(isNaN(n) ? undefined : n);
-                            } else {
-                                field.onChange(text);
-                            }
-                        }}
-                        onBlur={field.onBlur}
-                        keyboardType={keyboardType}
-                    />
+                    {valueAsNumber ? (
+                        <NumberInput
+                            initialValue={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            placeholder={placeholder}
+                            keyboardType={keyboardType}
+                        />
+                    ) : (
+                        <TextInput
+                            placeholder={placeholder}
+                            value={field.value ?? ""}
+                            onChangeText={field.onChange}
+                            onBlur={field.onBlur}
+                            keyboardType={keyboardType}
+                        />
+                    )}
                     {fieldState.error && (
                         <ErrorLabel
                             error={fieldState.error.message || "Campo inválido"}

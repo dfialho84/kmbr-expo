@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { corridaSchema, CorridaFormData } from "@/types/corrida";
+import { useCorridasContext } from "@/contexts/corridas-context";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
@@ -13,16 +14,32 @@ type Props = {
     onCancel: () => void;
 };
 
+function buildDefaultValues(corridas: ReturnType<typeof useCorridasContext>["corridas"]) {
+    const hoje = new Date();
+    const corridasHoje = corridas.filter((c) => {
+        const d = c.data;
+        return (
+            d.getFullYear() === hoje.getFullYear() &&
+            d.getMonth() === hoje.getMonth() &&
+            d.getDate() === hoje.getDate()
+        );
+    });
+    const proximoNumero = corridasHoje.length + 1;
+    const ultimaKm = corridas.length > 0 ? corridas[0].kmFinal : 0;
+    return {
+        data: hoje,
+        descricao: `Corrida #${proximoNumero}`,
+        kmInicial: ultimaKm,
+        kmFinal: ultimaKm,
+        valor: 0,
+    };
+}
+
 export default function AddCorridaForm({ onSave, onCancel }: Props) {
+    const { corridas } = useCorridasContext();
     const corridaForm = useForm<CorridaFormData>({
         resolver: zodResolver(corridaSchema),
-        defaultValues: {
-            data: new Date(),
-            descricao: "",
-            kmInicial: 0,
-            kmFinal: 0,
-            valor: 0,
-        },
+        defaultValues: buildDefaultValues(corridas),
     });
 
     return (
