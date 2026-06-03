@@ -42,7 +42,7 @@ function rowToCorrida(row: CorridaRow): Corrida {
 const sqliteCorridaRepository: ICorridaRepository = {
     async getAll(): Promise<Corrida[]> {
         const rows = db.getAllSync<CorridaRow>(
-            "SELECT * FROM corridas ORDER BY data DESC;"
+            "SELECT * FROM corridas ORDER BY data DESC, criadoEm DESC;"
         );
         return rows.map(rowToCorrida);
     },

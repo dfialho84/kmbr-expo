@@ -81,7 +81,12 @@ export function CorridasProvider({ children }: { children: React.ReactNode }) {
 
     async function addCorrida(input: CorridaFormData): Promise<void> {
         const nova = await sqliteCorridaRepository.save(input);
-        setCorridas((prev) => [nova, ...prev]);
+        setCorridas((prev) =>
+            [...prev, nova].sort((a, b) => {
+                const diff = b.data.getTime() - a.data.getTime();
+                return diff !== 0 ? diff : b.criadoEm.getTime() - a.criadoEm.getTime();
+            })
+        );
     }
 
     async function removeCorrida(id: string): Promise<void> {
