@@ -1,4 +1,5 @@
 import { Corrida, CorridaFormData } from "@/types/corrida";
+import * as Crypto from "expo-crypto";
 import * as SQLite from "expo-sqlite";
 import { ICorridaRepository } from "./corrida-repository";
 
@@ -47,7 +48,7 @@ const sqliteCorridaRepository: ICorridaRepository = {
     },
 
     async save(input: CorridaFormData): Promise<Corrida> {
-        const id = crypto.randomUUID();
+        const id = Crypto.randomUUID();
         const criadoEm = new Date();
 
         db.runSync(
