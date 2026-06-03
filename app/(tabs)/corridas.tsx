@@ -1,9 +1,9 @@
 import AddCorridaForm from "@/components/corridas/AddCorridaForm";
+import CorridaItem from "@/components/corridas/CorridaItem";
 import CorridasHeader from "@/components/corridas/CorridasHeader";
 import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
 import { useCorridas } from "@/hooks/use-corridas";
-import { Corrida } from "@/types/corrida";
 import React, { useState } from "react";
 import { FlatList, Modal, Text, View } from "react-native";
 
@@ -18,20 +18,6 @@ function EmptyList({ onPress }: EmptyListProps) {
                 Nenhuma corrida ainda!
             </Text>
             <Button label="Adicionar Corrida" onPress={onPress} />
-        </View>
-    );
-}
-
-function CorridaItem({ corrida }: { corrida: Corrida }) {
-    return (
-        <View className="px-4 py-3 border-b border-border">
-            <Text className="text-foreground font-medium">
-                {corrida.descricao}
-            </Text>
-            <Text className="text-muted-foreground text-sm">
-                {corrida.data.toLocaleDateString("pt-BR")} · {corrida.kmInicial}{" "}
-                → {corrida.kmFinal} km · R$ {corrida.valor.toFixed(2)}
-            </Text>
         </View>
     );
 }
