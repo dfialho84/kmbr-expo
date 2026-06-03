@@ -3,7 +3,7 @@ import CorridaItem from "@/components/corridas/CorridaItem";
 import CorridasHeader from "@/components/corridas/CorridasHeader";
 import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
-import { useCorridas } from "@/hooks/use-corridas";
+import { CorridasProvider, useCorridasContext } from "@/contexts/corridas-context";
 import React, { useState } from "react";
 import { FlatList, Modal, Text, View } from "react-native";
 
@@ -22,9 +22,9 @@ function EmptyList({ onPress }: EmptyListProps) {
     );
 }
 
-export default function Corridas() {
+function CorridasScreen() {
     const [showAddModal, setShowAddModal] = useState(false);
-    const { corridas, addCorrida } = useCorridas();
+    const { corridasFiltradas, addCorrida } = useCorridasContext();
 
     return (
         <View className="flex-1 bg-background">
@@ -33,7 +33,7 @@ export default function Corridas() {
                 ListEmptyComponent={
                     <EmptyList onPress={() => setShowAddModal(true)} />
                 }
-                data={corridas}
+                data={corridasFiltradas}
                 renderItem={({ item }) => <CorridaItem corrida={item} />}
                 keyExtractor={(item) => item.id}
             />
@@ -56,5 +56,13 @@ export default function Corridas() {
                 />
             </Modal>
         </View>
+    );
+}
+
+export default function Corridas() {
+    return (
+        <CorridasProvider>
+            <CorridasScreen />
+        </CorridasProvider>
     );
 }

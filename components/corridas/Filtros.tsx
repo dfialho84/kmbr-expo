@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useCorridasContext } from "@/contexts/corridas-context";
+import { FILTROS } from "@/types/filtro";
+import React from "react";
 import { FlatList, Pressable, Text } from "react-native";
 
-const FILTROS = ["Todos", "Hoje", "Esta semana", "Este mês", "Este ano"];
-
 export default function Filtros() {
-    const [selecionado, setSelecionado] = useState("Todos");
-
+    const { filtro: selecionado, setFiltro: onChangeFiltro } =
+        useCorridasContext();
     return (
         <FlatList
             horizontal
@@ -15,7 +15,7 @@ export default function Filtros() {
             contentContainerClassName="gap-2 px-0 pb-4"
             renderItem={({ item }) => (
                 <Pressable
-                    onPress={() => setSelecionado(item)}
+                    onPress={() => onChangeFiltro(item)}
                     className={`rounded-full px-4 py-1.5 border ${
                         selecionado === item
                             ? "bg-primary border-primary"
