@@ -9,7 +9,7 @@ import React, {
     useState,
 } from "react";
 
-export const FILTROS_TIPO: Array<TipoDespesa | "Todos"> = [
+export const FILTROS_TIPO: (TipoDespesa | "Todos")[] = [
     "Todos",
     "Abastecimento",
     "Manutenção",
@@ -97,8 +97,10 @@ export function DespesasProvider({ children }: { children: React.ReactNode }) {
         setDespesas((prev) =>
             [...prev, nova].sort((a, b) => {
                 const diff = b.data.getTime() - a.data.getTime();
-                return diff !== 0 ? diff : b.criadaEm.getTime() - a.criadaEm.getTime();
-            })
+                return diff !== 0
+                    ? diff
+                    : b.criadaEm.getTime() - a.criadaEm.getTime();
+            }),
         );
     }
 
@@ -130,7 +132,7 @@ export function useDespesasContext(): DespesasContextValue {
     const ctx = useContext(DespesasContext);
     if (!ctx)
         throw new Error(
-            "useDespesasContext deve ser usado dentro de DespesasProvider"
+            "useDespesasContext deve ser usado dentro de DespesasProvider",
         );
     return ctx;
 }

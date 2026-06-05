@@ -1,3 +1,4 @@
+import AddDespesaForm from "@/components/despesas/AddDespesaForm";
 import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
 import {
@@ -5,7 +6,7 @@ import {
     useDespesasContext,
 } from "@/contexts/despesas-context";
 import React, { useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Modal, Text, View } from "react-native";
 
 type EmptyListProps = {
     onPress: () => void;
@@ -37,14 +38,24 @@ function DespesasScreen() {
                 renderItem={({ item }) => <Text>{item.tipo}</Text>}
                 keyExtractor={(item) => item.id}
             />
-            {showAddModal && (
-                <Button label="Fechar" onPress={() => setShowAddModal(false)} />
-            )}
             <CircleButton
                 iconName="add"
                 className="absolute bottom-6 right-6"
                 onPress={() => setShowAddModal(true)}
             />
+            <Modal
+                visible={showAddModal}
+                onRequestClose={() => setShowAddModal(false)}
+                transparent
+            >
+                <AddDespesaForm
+                    onSave={async (data) => {
+                        //await addCorrida(data);
+                        setShowAddModal(false);
+                    }}
+                    onCancel={() => setShowAddModal(false)}
+                />
+            </Modal>
         </View>
     );
 }
