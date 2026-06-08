@@ -1,12 +1,30 @@
-import StyledSafeAreaView from "@/components/ui/StyledSafeAreaView";
-import { Text } from "react-native";
+import HomeHeader from "@/components/home/HomeHeader";
+import PeriodoItem from "@/components/home/PeriodoItem";
+import { ResumoProvider, useResumoContext } from "@/contexts/resumo-context";
+import React from "react";
+import { FlatList, View } from "react-native";
+
+function ResumoScreen() {
+    const { periodos, hasMore, loadMore } = useResumoContext();
+
+    return (
+        <View className="flex-1 bg-background">
+            <FlatList
+                ListHeaderComponent={<HomeHeader />}
+                data={periodos}
+                renderItem={({ item }) => <PeriodoItem periodo={item} />}
+                keyExtractor={(item) => item.key}
+                onEndReached={hasMore ? loadMore : undefined}
+                onEndReachedThreshold={0.3}
+            />
+        </View>
+    );
+}
 
 export default function Index() {
     return (
-        <StyledSafeAreaView className="flex-1 items-center justify-center bg-background">
-            <Text className="font-extrabold text-2xl text-foreground">
-                Edit app/index.tsx to edit this screen.
-            </Text>
-        </StyledSafeAreaView>
+        <ResumoProvider>
+            <ResumoScreen />
+        </ResumoProvider>
     );
 }
