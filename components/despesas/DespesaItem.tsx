@@ -27,7 +27,7 @@ export default function DespesaItem({ despesa }: Props) {
 
     return (
         <Swipeable renderRightActions={renderRightActions}>
-        <View className="border mx-4 p-4 rounded-2xl border-gray-400 mb-4 gap-2 flex-row">
+        <View className="border mx-4 p-4 rounded-2xl border-border mb-4 gap-2 flex-row">
             <View className="justify-center">
                 <MaterialCommunityIcons
                     name={TIPO_CONFIG[despesa.tipo].icon}
@@ -37,16 +37,16 @@ export default function DespesaItem({ despesa }: Props) {
             <View className="flex-1 flex-col flex gap-2">
                 <View className="flex flex-row justify-between flex-1">
                     <Text
-                        className="font-extrabold text-lg max-w-3/4"
+                        className="text-base font-semibold text-foreground max-w-3/4"
                         numberOfLines={2}
                     >
                         {despesa.descricao || despesa.tipo}
                     </Text>
-                    <Text className="text-gray-400">
+                    <Text className="text-sm text-muted-foreground">
                         {despesa.data.toLocaleDateString("pt-BR")}
                     </Text>
                 </View>
-                <Text className="font-extrabold text-2xl text-error">
+                <Text className="text-xl font-bold text-red-500">
                     {despesa.valor.toLocaleString("pt-BR", {
                         style: "currency",
                         currency: "BRL",

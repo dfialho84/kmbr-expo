@@ -24,26 +24,26 @@ export default function CorridaItem({ corrida }: Props) {
 
     return (
         <Swipeable renderRightActions={renderRightActions}>
-            <View className="border mx-4 p-4 rounded-2xl border-gray-400 mb-4 gap-2">
+            <View className="border mx-4 p-4 rounded-2xl border-border mb-4 gap-2">
                 <View className="flex flex-row justify-between">
                     <Text
-                        className="font-extrabold text-xl max-w-3/4"
+                        className="text-base font-semibold text-foreground max-w-3/4"
                         numberOfLines={2}
                     >
                         {corrida.descricao}
                     </Text>
-                    <Text className="text-gray-400">
+                    <Text className="text-sm text-muted-foreground">
                         {corrida.data.toLocaleDateString("pt-BR")}
                     </Text>
                 </View>
-                <Text className="font-extrabold text-2xl text-primary">
+                <Text className="text-xl font-bold text-green-600">
                     {corrida.valor.toLocaleString("pt-BR", {
                         style: "currency",
                         currency: "BRL",
                     })}
                 </Text>
-                <Text className="text-gray-500 font-light text-sm">
-                    <Text className="text-md font-medium text-lg">
+                <Text className="text-sm text-muted-foreground">
+                    <Text className="text-base font-semibold text-foreground">
                         {corrida.kmFinal - corrida.kmInicial} Km
                     </Text>{" "}
                     · {corrida.kmInicial} → {corrida.kmFinal} km

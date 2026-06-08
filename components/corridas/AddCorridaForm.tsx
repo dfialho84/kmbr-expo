@@ -46,7 +46,7 @@ export default function AddCorridaForm({ onSave, onCancel }: Props) {
         <View className="items-center justify-center bg-gray-500/50 flex-1">
             <View className="bg-card border border-border p-4 rounded-lg shadow-lg w-3/4 gap-4">
                 <View>
-                    <Text className="text-2xl font-bold text-primary">
+                    <Text className="text-lg font-bold text-foreground">
                         Nova Corrida
                     </Text>
                 </View>

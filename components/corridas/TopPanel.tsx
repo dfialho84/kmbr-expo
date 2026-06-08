@@ -14,17 +14,17 @@ export default function TopPanel() {
 
     return (
         <View className="flex-row gap-2 px-4">
-            <View className="flex-1 bg-gray-200 rounded-2xl p-4 gap-4">
-                <Text className="text-sm text-gray-500 font-extrabold">
+            <View className="flex-1 bg-card border border-border rounded-xl p-4 gap-4">
+                <Text className="text-sm text-muted-foreground font-semibold">
                     Corridas
                 </Text>
-                <Text className="text-2xl font-extrabold">{total}</Text>
+                <Text className="text-2xl font-bold text-foreground">{total}</Text>
             </View>
-            <View className="flex-1 bg-gray-200 rounded-2xl p-4 gap-4">
-                <Text className="text-sm text-gray-500 font-extrabold">
+            <View className="flex-1 bg-card border border-border rounded-xl p-4 gap-4">
+                <Text className="text-sm text-muted-foreground font-semibold">
                     Total Ganho
                 </Text>
-                <Text className="text-2xl font-extrabold text-primary">
+                <Text className="text-2xl font-bold text-green-600">
                     {formatBRL(totalGanho)}
                 </Text>
             </View>
