@@ -4,7 +4,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Text, TouchableOpacity, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
-export default function CorridaItem({ corrida }: { corrida: Corrida }) {
+type Props = {
+    corrida: Corrida;
+};
+
+export default function CorridaItem({ corrida }: Props) {
     const { removeCorrida } = useCorridasContext();
 
     function renderRightActions() {

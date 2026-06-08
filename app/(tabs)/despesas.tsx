@@ -25,7 +25,7 @@ function EmptyList({ onPress }: EmptyListProps) {
 
 function DespesasScreen() {
     const [showAddModal, setShowAddModal] = useState(false);
-    const { despesas } = useDespesasContext();
+    const { despesas, addDespesa } = useDespesasContext();
 
     return (
         <View className="flex-1 bg-background">
@@ -50,7 +50,7 @@ function DespesasScreen() {
             >
                 <AddDespesaForm
                     onSave={async (data) => {
-                        //await addCorrida(data);
+                        await addDespesa(data);
                         setShowAddModal(false);
                     }}
                     onCancel={() => setShowAddModal(false)}

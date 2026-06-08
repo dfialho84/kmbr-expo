@@ -7,6 +7,7 @@ import { Pressable, Text, View } from "react-native";
 import FormDateField from "../form/FormDateField";
 import FormMoneyField from "../form/FormMoneyField";
 import Button from "../ui/Button";
+import FormTextField from "../form/FormTextField";
 
 type Props = {
     onSave: (data: DespesaFormData) => void;
@@ -26,6 +27,7 @@ export default function AddDespesaForm({ onSave, onCancel }: Props) {
             data: new Date(),
             tipo: "Abastecimento",
             valor: 0,
+            descricao: "",
         },
     });
 
@@ -91,6 +93,14 @@ export default function AddDespesaForm({ onSave, onCancel }: Props) {
                         control={despesaForm.control}
                         name="valor"
                         label="Valor (R$)"
+                    />
+
+                    <FormTextField
+                        className="gap-1"
+                        control={despesaForm.control}
+                        name="descricao"
+                        label="Descrição"
+                        placeholder="Opcional"
                     />
 
                     <View className="flex-row justify-end gap-2 mt-4">
