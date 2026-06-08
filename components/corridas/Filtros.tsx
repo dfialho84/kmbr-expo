@@ -13,7 +13,7 @@ export default function Filtros() {
             showsHorizontalScrollIndicator={false}
             data={FILTROS}
             keyExtractor={(item) => item}
-            contentContainerClassName="gap-2 px-0 pb-4"
+            contentContainerClassName="gap-2 pb-4 px-4"
             renderItem={({ item }) => (
                 <Chip
                     selecionado={selecionado === item}

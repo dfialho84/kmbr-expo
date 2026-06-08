@@ -13,7 +13,7 @@ export default function TopPanel() {
     // const ganhoPorCorrida = total > 0 ? totalGanho / total : 0;
 
     return (
-        <View className="flex-row gap-2">
+        <View className="flex-row gap-2 px-4">
             <View className="flex-1 bg-gray-200 rounded-2xl p-4 gap-4">
                 <Text className="text-sm text-gray-500 font-extrabold">
                     Corridas
