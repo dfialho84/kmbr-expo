@@ -1,4 +1,5 @@
 import AddDespesaForm from "@/components/despesas/AddDespesaForm";
+import DespesasHeader from "@/components/despesas/DespesasHeader";
 import DespesaItem from "@/components/despesas/DespesaItem";
 import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
@@ -26,16 +27,16 @@ function EmptyList({ onPress }: EmptyListProps) {
 
 function DespesasScreen() {
     const [showAddModal, setShowAddModal] = useState(false);
-    const { despesas, addDespesa } = useDespesasContext();
+    const { despesasFiltradas, addDespesa } = useDespesasContext();
 
     return (
         <View className="flex-1 bg-background">
             <FlatList
-                ListHeaderComponent={<Text>Header</Text>}
+                ListHeaderComponent={<DespesasHeader />}
                 ListEmptyComponent={
                     <EmptyList onPress={() => setShowAddModal(true)} />
                 }
-                data={despesas}
+                data={despesasFiltradas}
                 renderItem={({ item }) => <DespesaItem despesa={item} />}
                 keyExtractor={(item) => item.id}
             />
