@@ -1,4 +1,5 @@
 import AddDespesaForm from "@/components/despesas/AddDespesaForm";
+import DespesaItem from "@/components/despesas/DespesaItem";
 import Button from "@/components/ui/Button";
 import CircleButton from "@/components/ui/CircleButton";
 import {
@@ -35,7 +36,7 @@ function DespesasScreen() {
                     <EmptyList onPress={() => setShowAddModal(true)} />
                 }
                 data={despesas}
-                renderItem={({ item }) => <Text>{item.tipo}</Text>}
+                renderItem={({ item }) => <DespesaItem despesa={item} />}
                 keyExtractor={(item) => item.id}
             />
             <CircleButton

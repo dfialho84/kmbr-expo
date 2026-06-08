@@ -1,4 +1,5 @@
-import { DespesaFormData, despesaSchema, TIPOS_DESPESA, TipoDespesa } from "@/types/despesa";
+import { DespesaFormData, despesaSchema, TIPOS_DESPESA } from "@/types/despesa";
+import { TIPO_CONFIG } from "@/constants/despesas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
@@ -12,12 +13,6 @@ import FormTextField from "../form/FormTextField";
 type Props = {
     onSave: (data: DespesaFormData) => void;
     onCancel: () => void;
-};
-
-const TIPO_CONFIG: Record<TipoDespesa, { icon: React.ComponentProps<typeof MaterialCommunityIcons>["name"]; label: string }> = {
-    Abastecimento: { icon: "gas-station", label: "Abastecimento" },
-    Manutenção: { icon: "wrench", label: "Manutenção" },
-    Outros: { icon: "dots-horizontal-circle", label: "Outros" },
 };
 
 export default function AddDespesaForm({ onSave, onCancel }: Props) {

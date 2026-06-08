@@ -11,15 +11,24 @@ db.execSync(`
         data TEXT NOT NULL,
         tipo TEXT NOT NULL,
         valor REAL NOT NULL,
+        descricao TEXT,
         criadaEm TEXT NOT NULL
     );
 `);
+
+// migração para bancos existentes sem a coluna descricao
+try {
+    db.execSync(`ALTER TABLE despesas ADD COLUMN descricao TEXT;`);
+} catch {
+    // coluna já existe
+}
 
 type DespesaRow = {
     id: string;
     data: string;
     tipo: TipoDespesa;
     valor: number;
+    descricao: string | null;
     criadaEm: string;
 };
 
@@ -29,6 +38,7 @@ function rowToDespesa(row: DespesaRow): Despesa {
         data: new Date(row.data),
         tipo: row.tipo,
         valor: row.valor,
+        descricao: row.descricao ?? undefined,
         criadaEm: new Date(row.criadaEm),
     };
 }
@@ -46,12 +56,13 @@ const sqliteDespesaRepository: IDespesaRepository = {
         const criadaEm = new Date();
 
         db.runSync(
-            `INSERT INTO despesas (id, data, tipo, valor, criadaEm)
-             VALUES (?, ?, ?, ?, ?);`,
+            `INSERT INTO despesas (id, data, tipo, valor, descricao, criadaEm)
+             VALUES (?, ?, ?, ?, ?, ?);`,
             id,
             input.data.toISOString(),
             input.tipo,
             input.valor,
+            input.descricao ?? null,
             criadaEm.toISOString()
         );
 
