@@ -1,15 +1,32 @@
 import { TIPO_CONFIG } from "@/constants/despesas";
+import { useDespesasContext } from "@/contexts/despesas-context";
 import { Despesa } from "@/types/despesa";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 type Props = {
     despesa: Despesa;
 };
 
 export default function DespesaItem({ despesa }: Props) {
+    const { removeDespesa } = useDespesasContext();
+
+    function renderRightActions() {
+        return (
+            <TouchableOpacity
+                onPress={() => removeDespesa(despesa.id)}
+                className="bg-error justify-center items-center w-20 rounded-2xl mr-4 mb-4"
+            >
+                <Ionicons name="trash-outline" size={24} color="white" />
+            </TouchableOpacity>
+        );
+    }
+
     return (
+        <Swipeable renderRightActions={renderRightActions}>
         <View className="border mx-4 p-4 rounded-2xl border-gray-400 mb-4 gap-2 flex-row">
             <View className="justify-center">
                 <MaterialCommunityIcons
@@ -37,5 +54,6 @@ export default function DespesaItem({ despesa }: Props) {
                 </Text>
             </View>
         </View>
+        </Swipeable>
     );
 }
