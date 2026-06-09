@@ -1,50 +1,50 @@
-# Welcome to your Expo app 👋
+# KmBr
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App de controle de quilometragem e despesas, desenvolvido com Expo + React Native.
 
-## Get started
+## Desenvolvimento
 
-1. Install dependencies
+1. Instalar dependências
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Iniciar o servidor de desenvolvimento
 
    ```bash
-   npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+   Opções disponíveis no terminal:
+   - Escanear o QR code com o **Expo Go** no celular
+   - Pressionar `a` para abrir no emulador Android
+   - Pressionar `i` para abrir no simulador iOS
+   - Pressionar `w` para abrir no navegador
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Build para produção (Android)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+O build é feito na nuvem via **EAS Build** (não precisa do Android Studio).
 
-## Get a fresh project
-
-When you're ready, run:
+### Pré-requisitos
 
 ```bash
-npm run reset-project
+npm install -g eas-cli
+eas login
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Gerar AAB para o Google Play
 
-## Learn more
+```bash
+eas build -p android --profile production
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Ao terminar, o EAS fornece um link para baixar o arquivo `.aab`. Faça o upload manualmente no [Google Play Console](https://play.google.com/console).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Gerar APK para instalação direta (sem Play Store)
 
-## Join the community
+```bash
+eas build -p android --profile preview
+```
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+O plano gratuito do EAS inclui 30 builds/mês. Acompanhe os builds em [expo.dev](https://expo.dev).
